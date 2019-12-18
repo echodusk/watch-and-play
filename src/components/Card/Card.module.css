@@ -1,0 +1,43 @@
+.card {
+  background: white;
+  border: 1px solid #e2e4e5;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 10px;
+}
+
+.cardOpen {
+  background: white;
+  border: 1px solid #e2e4e5;
+  border-left: 10px solid #a8c6fa;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 15px;
+}
+
+.cardOptions {
+  color: #8aa8cd;
+  font-size: 1.2em;
+  text-align: left;
+  margin: 12px 0;
+}
+
+.cardOptions div:first-child {
+  border-bottom: 1px solid #e2e4e5;
+}
+
+.cardOptions > div {
+  padding-bottom: 5px;
+  margin-top: 5px;
+}
+
+.cardConfig {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.correct {
+    float: right;
+    color: #d0eac1;
+}
