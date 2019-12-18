@@ -19,8 +19,8 @@ export function CardsContainer(props: ICardsContainerProps) {
         <div className={styles.cardConfig}>
           <Button basic>Create</Button>
           <div>
-            <Icon name="trash alternate outline" size="large"></Icon>
-            <Icon name="pencil" size="large"></Icon>
+            <Icon link name="trash alternate outline" size="large"></Icon>
+            <Icon link name="pencil" size="large"></Icon>
           </div>
         </div>
       </div>
@@ -35,8 +35,8 @@ export function CardsContainer(props: ICardsContainerProps) {
         <div className={styles.cardConfig}>
           <Button basic>Create</Button>
           <div>
-            <Icon name="trash alternate outline" size="large"></Icon>
-            <Icon name="pencil" size="large"></Icon>
+            <Icon link name="trash alternate outline" size="large"></Icon>
+            <Icon link name="pencil" size="large"></Icon>
           </div>
         </div>
       </div>
@@ -52,8 +52,8 @@ export function CardsContainer(props: ICardsContainerProps) {
         <div className={styles.cardConfig}>
           <Button basic>Create</Button>
           <div>
-            <Icon name="trash alternate outline" size="large"></Icon>
-            <Icon name="pencil" size="large"></Icon>
+            <Icon link name="trash alternate outline" size="large"></Icon>
+            <Icon link name="pencil" size="large"></Icon>
           </div>
         </div>
       </div>
