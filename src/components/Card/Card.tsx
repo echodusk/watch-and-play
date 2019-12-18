@@ -8,7 +8,7 @@ type ICardsContainerProps = {
   quiz: Quizzes;
 };
 
-const Card: React.FunctionComponent<ICardsContainerProps> = ({ quiz }) => {
+export const Card: React.FC<ICardsContainerProps> = ({ quiz }) => {
   return (
     <div className={quiz.active ? styles.cardOpen : styles.card}>
       <Header textAlign="left" as="h5">
@@ -38,5 +38,3 @@ const Card: React.FunctionComponent<ICardsContainerProps> = ({ quiz }) => {
     </div>
   );
 };
-
-export default Card;

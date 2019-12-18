@@ -14,6 +14,7 @@ export type IAppState = {
 };
 
 class App extends React.Component<IAppProps, IAppState> {
+
   state: IAppState = {
     quizzes: [
       {
@@ -22,7 +23,8 @@ class App extends React.Component<IAppProps, IAppState> {
         answerA: "1990",
         answerB: "2019",
         correctAnswer: 2,
-        active: false
+        active: false,
+        editing: false
       },
       {
         id: 2,
@@ -30,7 +32,8 @@ class App extends React.Component<IAppProps, IAppState> {
         answerA: "Spring",
         answerB: "React",
         correctAnswer: 2,
-        active: false
+        active: false,
+        editing: false
       },
       {
         id: 3,
@@ -38,10 +41,22 @@ class App extends React.Component<IAppProps, IAppState> {
         answerA: "Smash",
         answerB: "Jump Force",
         correctAnswer: 1,
-        active: true
+        active: true,
+        editing: false
       },
     ]
   };
+
+  componentDidMount() {
+    if (localStorage.getItem('quiz')) {
+      const state = JSON.parse(localStorage.getItem('quiz')!);
+      this.state = state;
+    }
+  }
+
+  componentWillUnmount() {
+    localStorage.setItem('quiz', JSON.stringify(this.state))
+  }
 
   public render() {
     return (
