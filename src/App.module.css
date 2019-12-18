@@ -1,0 +1,26 @@
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+}
+
+.mainDisplay {
+  background-color: #282c34;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  width: 60%
+}
+
+.mainQuizzes {
+  width: 40%;
+  background: #f7f6f6;
+}
+
+.quizContainer {
+  padding: 20px;
+}
