@@ -24,7 +24,6 @@ class App extends React.Component<IAppProps, IAppState> {
         <section className={styles.mainQuizzes}>
           <article className={styles.quizContainer}>
             <Header textAlign="left" as="h4">Trivia questions</Header>
-
             <CardsContainer />
           </article>
         </section>

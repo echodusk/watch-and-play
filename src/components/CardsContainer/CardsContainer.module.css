@@ -5,11 +5,22 @@
   margin-bottom: 15px;
 }
 
+
 .card {
   background: white;
   border: 1px solid #e2e4e5;
   border-radius: 10px;
   padding: 20px;
+}
+
+.cardOpen {
+  background: white;
+  border: 1px solid #e2e4e5;
+  border-left: 10px solid #a8c6fa;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 15px;
+
 }
 
 .cardOptions {
