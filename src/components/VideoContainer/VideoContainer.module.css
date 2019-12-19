@@ -12,12 +12,18 @@
 
 .question {
   position: absolute;
+  border-radius: 5px;
   background-color: rgba(110, 80, 152, 0.82);
   z-index: 2;
-  left: 0;
-  right: 0;
+  left: 5%;
+  right: 5%;
   top: 50%;
-  bottom: 0;
+  bottom: 4%;
+  padding: 20px;
+}
+
+.question h2 {
+  color: white !important;
 }
 
 .content { position: relative;}
