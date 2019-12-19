@@ -62,6 +62,9 @@ class App extends React.Component<{}, IAppState> {
     this.setState(prevState => ({ quizzes: [...prevState.quizzes, quizz] }))
   }
 
+  public onDeleteQuizz = (id: string): void => {
+    this.setState(prevState => ({ quizzes: [...prevState.quizzes.filter(quizz => quizz.id !== id)]}), () => console.log(this.state));
+  }
   public render() {
     return (
       <main className={styles.App}>
@@ -75,6 +78,7 @@ class App extends React.Component<{}, IAppState> {
             </Header>
             <CardsContainer
               handleActive={this.onActiveHandler}
+              handleDelete={this.onDeleteQuizz}
               handleSubmit={this.onQuizzSubmit}
               quizzes={this.state.quizzes}
             />

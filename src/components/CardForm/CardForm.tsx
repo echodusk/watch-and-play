@@ -75,7 +75,7 @@ export const CardForm: React.FunctionComponent<ICardFormProps> = ({
             <Button onClick={() => handleClose()} basic>
               Discard
             </Button>
-            <Button basic onClick={() => handleSubmit(form)}>Save</Button>
+            <Button disabled={!form.question || !form.answerA || !form.answerB || !form.correctAnswer} basic onClick={() => handleSubmit(form)}>Save</Button>
           </div>
         </div>
       </Form>

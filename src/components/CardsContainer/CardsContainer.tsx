@@ -10,12 +10,14 @@ type ICardsContainerProps = {
   quizzes: Quizzes[];
   handleActive: (id: string) => void;
   handleSubmit: (form: IQuizzForm) => void;
+  handleDelete: (id: string) => void;
 };
 
 export const CardsContainer: React.FC<ICardsContainerProps> = ({
   quizzes,
   handleActive,
   handleSubmit,
+  handleDelete,
 }) => {
   const [isOpen, setOpen] = React.useState<boolean>(false);
   const closeForm = () => setOpen(false);
@@ -28,7 +30,7 @@ export const CardsContainer: React.FC<ICardsContainerProps> = ({
     <React.Fragment>
       <section className={styles.cardsContainer}>
         {quizzes.map(quiz => (
-          <Card handleActive={handleActive} key={quiz.id} quiz={quiz} />
+          <Card handleDelete={handleDelete} handleActive={handleActive} key={quiz.id} quiz={quiz} />
         ))}
       </section>
       <section>
