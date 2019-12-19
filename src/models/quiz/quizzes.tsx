@@ -1,5 +1,5 @@
 export type Quizzes = {
-  id: number;
+  id: string;
   question: string;
   answerA: string;
   answerB: string;
@@ -7,7 +7,15 @@ export type Quizzes = {
   active: boolean;
 };
 
+export type IQuizzForm = {
+  question: string;
+  answerA: string;
+  answerB: string;
+  correctAnswer: CorrectAnswer | null;
+}
+
 export enum CorrectAnswer {
   First = 1,
   Second
 }
+

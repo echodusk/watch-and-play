@@ -1,23 +1,17 @@
 import * as React from "react";
 import { Header, Button, Form, Radio, CheckboxProps } from "semantic-ui-react";
 import styles from "./Card.module.css";
-import { CorrectAnswer } from "../../models/quiz/quizzes";
+import { CorrectAnswer, IQuizzForm } from "../../models/quiz/quizzes";
 
 type ICardFormProps = {
   handleClose: () => void;
+  handleSubmit: (form: IQuizzForm) => void;
 };
 
-type IForm = {
-  question: string;
-  answerA: string;
-  answerB: string;
-  correctAnswer: CorrectAnswer | null;
-}
-
 export const CardForm: React.FunctionComponent<ICardFormProps> = ({
-  handleClose
+  handleClose, handleSubmit
 }) => {
-  const [form, setForm] = React.useState<IForm>({ question: '', answerA: '', answerB: '', correctAnswer: null });
+  const [form, setForm] = React.useState<IQuizzForm>({ question: '', answerA: '', answerB: '', correctAnswer: null });
 
   const handleFormChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const updatedForm = { ...form, [e.target.name]: e.target.value };
@@ -81,7 +75,7 @@ export const CardForm: React.FunctionComponent<ICardFormProps> = ({
             <Button onClick={() => handleClose()} basic>
               Discard
             </Button>
-            <Button basic>Save</Button>
+            <Button basic onClick={() => handleSubmit(form)}>Save</Button>
           </div>
         </div>
       </Form>

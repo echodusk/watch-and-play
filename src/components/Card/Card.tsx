@@ -7,7 +7,7 @@ import styles from "./Card.module.css";
 
 type ICardsContainerProps = {
   quiz: Quizzes;
-  handleActive: (id: number) => void;
+  handleActive: (id: string) => void;
 };
 
 export const Card: React.FC<ICardsContainerProps> = ({ quiz, handleActive }) => {

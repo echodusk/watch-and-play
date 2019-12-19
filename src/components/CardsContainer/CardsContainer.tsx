@@ -3,22 +3,26 @@ import { Button } from "semantic-ui-react";
 import { Card } from "../Card/Card";
 import { CardForm } from "../CardForm/CardForm";
 
-import { Quizzes } from "../../models/quiz/quizzes";
+import { Quizzes, IQuizzForm } from "../../models/quiz/quizzes";
 import styles from "./CardsContainer.module.css";
 
 type ICardsContainerProps = {
   quizzes: Quizzes[];
-  handleActive: (id: number) => void;
-  handleSubmit: () => void;
-  handleClose: () => void;
+  handleActive: (id: string) => void;
+  handleSubmit: (form: IQuizzForm) => void;
 };
 
 export const CardsContainer: React.FC<ICardsContainerProps> = ({
   quizzes,
-  handleActive
+  handleActive,
+  handleSubmit,
 }) => {
   const [isOpen, setOpen] = React.useState<boolean>(false);
   const closeForm = () => setOpen(false);
+  const submitForm = (form: IQuizzForm): void => {
+    handleSubmit(form)
+    setOpen(false);
+  };
 
   return (
     <React.Fragment>
@@ -33,7 +37,7 @@ export const CardsContainer: React.FC<ICardsContainerProps> = ({
             Add Question
           </Button>
         ) : (
-          <CardForm handleClose={closeForm} />
+          <CardForm handleSubmit={submitForm} handleClose={closeForm} />
         )}
       </section>
     </React.Fragment>

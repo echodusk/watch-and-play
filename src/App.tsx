@@ -4,8 +4,10 @@ import "semantic-ui-css/semantic.min.css";
 import { Header } from "semantic-ui-react";
 import { CardsContainer } from "./components/CardsContainer/CardsContainer";
 
-import { Quizzes } from "./models/quiz/quizzes";
+import { Quizzes, IQuizzForm } from "./models/quiz/quizzes";
 import styles from "./App.module.css";
+import { generateRandomId } from "./utils/randomId";
+import { newQuizz } from "./utils/newQuizz";
 
 export type IAppState = {
   quizzes: Quizzes[];
@@ -15,7 +17,7 @@ class App extends React.Component<{}, IAppState> {
   state: IAppState = {
     quizzes: [
       {
-        id: 1,
+        id: generateRandomId(),
         question: "What's the current year?",
         answerA: "1990",
         answerB: "2019",
@@ -23,7 +25,7 @@ class App extends React.Component<{}, IAppState> {
         active: false
       },
       {
-        id: 2,
+        id: generateRandomId(),
         question: "Which one is not a JS Lib?",
         answerA: "Spring",
         answerB: "React",
@@ -31,7 +33,7 @@ class App extends React.Component<{}, IAppState> {
         active: false
       },
       {
-        id: 3,
+        id: generateRandomId(),
         question: "What's better?",
         answerA: "Smash",
         answerB: "Jump Force",
@@ -41,7 +43,7 @@ class App extends React.Component<{}, IAppState> {
     ]
   };
 
-  public onActiveHandler = (id: number): void => {
+  public onActiveHandler = (id: string): void => {
     const { quizzes } = this.state;
     const filteredQuizzes = quizzes.map(quizz => {
       if (quizz.id === id) {
@@ -55,10 +57,10 @@ class App extends React.Component<{}, IAppState> {
     this.setState({ quizzes: filteredQuizzes });
   };
 
-  public onQuizzSubmit = (): void => {
+  public onQuizzSubmit = (form: IQuizzForm): void => {
+    const quizz = newQuizz(form);
+    this.setState(prevState => ({ quizzes: [...prevState.quizzes, quizz] }))
   }
-
-  public onQuizzClose = (): void => {}
 
   public render() {
     return (
@@ -74,7 +76,6 @@ class App extends React.Component<{}, IAppState> {
             <CardsContainer
               handleActive={this.onActiveHandler}
               handleSubmit={this.onQuizzSubmit}
-              handleClose={this.onQuizzClose}
               quizzes={this.state.quizzes}
             />
           </article>
