@@ -10,10 +10,12 @@ const VideoContainer: React.FunctionComponent<IVideoContainerProps> = props => {
     <section className={styles.mainDisplay}>
       <article className={styles.content}>
         <div className={styles.question}>
-          <Header as="h2">Which one is not a JS Lib?</Header>
-          <div>
-            <Button>React</Button>
-            <Button>Spring</Button>
+          <div className={styles.questionContainer}>
+            <Header as="h2">Which one is not a JS Lib?</Header>
+            <div className={styles.selectorContainer}>
+              <div className={styles.questionSelector}>React</div>
+              <div className={styles.questionSelector}>Spring</div>
+            </div>
           </div>
         </div>
         <video
