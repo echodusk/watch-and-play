@@ -1,13 +1,15 @@
 import * as React from "react";
 import "semantic-ui-css/semantic.min.css";
 
-import { Header } from "semantic-ui-react";
-import { CardsContainer } from "./components/CardsContainer/CardsContainer";
+import QuizzesContainer from "./components/QuizzesContainer/QuizzesContainer";
 
 import { Quizzes, IQuizForm } from "./models/quiz/quizzes";
-import styles from "./App.module.css";
+
 import { generateRandomId } from "./utils/randomId";
 import { newQuiz } from "./utils/newQuiz";
+
+import styles from "./App.module.css";
+import VideoContainer from "./components/VideoContainer/VideoContainer";
 
 export type IAppState = {
   quizzes: Quizzes[];
@@ -82,31 +84,22 @@ class App extends React.Component<{}, IAppState> {
   };
 
   public onDeleteQuiz = (id: string): void => {
-    this.setState(
-      prevState => ({
-        quizzes: [...prevState.quizzes.filter(quiz => quiz.id !== id)]
-      }));
+    this.setState(prevState => ({
+      quizzes: [...prevState.quizzes.filter(quiz => quiz.id !== id)]
+    }));
   };
+
   public render() {
     return (
       <main className={styles.App}>
-        <section className={styles.mainDisplay}>
-          <p>Ballad of Beacondfield Miners.</p>
-        </section>
-        <section className={styles.mainQuizzes}>
-          <article className={styles.quizContainer}>
-            <Header textAlign="left" as="h4">
-              Trivia questions
-            </Header>
-            <CardsContainer
-              handleEdit={this.onQuizEdit}
-              handleActive={this.onActiveHandler}
-              handleDelete={this.onDeleteQuiz}
-              handleSubmit={this.onQuizSubmit}
-              quizzes={this.state.quizzes}
-            />
-          </article>
-        </section>
+        <VideoContainer />
+        <QuizzesContainer
+          handleEdit={this.onQuizEdit}
+          handleActive={this.onActiveHandler}
+          handleDelete={this.onDeleteQuiz}
+          handleSubmit={this.onQuizSubmit}
+          quizzes={this.state.quizzes}
+        />
       </main>
     );
   }
