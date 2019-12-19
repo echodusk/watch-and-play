@@ -7,4 +7,21 @@
   font-size: calc(10px + 2vmin);
   color: white;
   width: 60%;
+  padding: 20px;
+}
+
+.question {
+  position: absolute;
+  background-color: rgba(110, 80, 152, 0.82);
+  z-index: 2;
+  left: 0;
+  right: 0;
+  top: 50%;
+  bottom: 0;
+}
+
+.content { position: relative;}
+.content video {
+  width: 100%;
+  display: block;
 }

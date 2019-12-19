@@ -11,7 +11,7 @@ import { newQuiz } from "./utils/newQuiz";
 import styles from "./App.module.css";
 import VideoContainer from "./components/VideoContainer/VideoContainer";
 
-export type IAppState = {
+type IAppState = {
   quizzes: Quizzes[];
 };
 
