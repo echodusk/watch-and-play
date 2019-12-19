@@ -8,14 +8,14 @@ import { Card } from "../Card/Card";
 type ICardsContainerProps = {
   quizzes: Quizzes[];
   handleActive: (id: number) => void;
-}
+};
 
 export const CardsContainer: React.FC<ICardsContainerProps> = ({ quizzes, handleActive }) => {
   return (
     <React.Fragment>
       <section className={styles.cardsContainer}>
         {quizzes.map(quiz => (
-          <Card handleActive={handleActive} key={quiz.id} quiz={quiz}  />
+          <Card handleActive={handleActive} key={quiz.id} quiz={quiz} />
         ))}
       </section>
       <section>
@@ -25,4 +25,4 @@ export const CardsContainer: React.FC<ICardsContainerProps> = ({ quizzes, handle
       </section>
     </React.Fragment>
   );
-}
+};
