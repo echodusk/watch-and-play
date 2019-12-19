@@ -1,9 +1,10 @@
 import * as React from "react";
-import { Quizzes } from "../../models/quiz/quizzes";
+import { Header, Button, Icon } from "semantic-ui-react";
 
+import { Quizzes, CorrectAnswer } from "../../models/quiz/quizzes";
 import styles from "./Card.module.css";
 
-import { Header, Button, Icon } from "semantic-ui-react";
+
 type ICardsContainerProps = {
   quiz: Quizzes;
   handleActive: (id: number) => void;
@@ -17,16 +18,10 @@ export const Card: React.FC<ICardsContainerProps> = ({ quiz, handleActive }) => 
       </Header>
       <div className={styles.cardOptions}>
         <div>
-          {quiz.answerA}
-          {quiz.correctAnswer === 1 ? (
-            <Icon className={styles.correct} name="check"></Icon>
-          ) : null}
+          {quiz.answerA} { quiz.correctAnswer === CorrectAnswer.First ? (<Icon className={styles.correct} name="check"></Icon>) : null }
         </div>
         <div>
-          {quiz.answerB}
-          {quiz.correctAnswer === 2 ? (
-            <Icon className={styles.correct} name="check"></Icon>
-          ) : null}
+          {quiz.answerB} {quiz.correctAnswer === CorrectAnswer.Second ? (<Icon className={styles.correct} name="check"></Icon>) : null }
         </div>
       </div>
       <div className={styles.cardConfig}>

@@ -5,7 +5,6 @@ export type Quizzes = {
   answerB: string;
   correctAnswer: CorrectAnswer;
   active: boolean;
-  editing: boolean;
 };
 
 export enum CorrectAnswer {
