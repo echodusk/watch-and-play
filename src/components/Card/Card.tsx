@@ -9,9 +9,10 @@ type ICardsContainerProps = {
   quiz: Quizzes;
   handleActive: (id: string) => void;
   handleDelete: (id: string) => void;
+  handleEditMode: (id: string) => void;
 };
 
-export const Card: React.FC<ICardsContainerProps> = ({ quiz, handleActive, handleDelete }) => {
+export const Card: React.FC<ICardsContainerProps> = ({ quiz, handleActive, handleDelete, handleEditMode }) => {
   return (
     <div className={quiz.active ? styles.cardOpen : styles.card}>
       <Header textAlign="left" as="h5">
@@ -29,7 +30,7 @@ export const Card: React.FC<ICardsContainerProps> = ({ quiz, handleActive, handl
         <Button basic onClick={() => handleActive(quiz.id)}>{quiz.active ? "Close" : "Open"}</Button>
         <div>
           <Icon onClick={() => handleDelete(quiz.id)} link name="trash alternate outline" size="large"></Icon>
-          <Icon link name="pencil" size="large"></Icon>
+          <Icon onClick={() => handleEditMode(quiz.id)} link name="pencil" size="large"></Icon>
         </div>
       </div>
     </div>

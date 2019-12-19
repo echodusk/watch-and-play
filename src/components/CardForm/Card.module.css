@@ -19,9 +19,10 @@
 }
 
 .centerAlign {
-  text-align: center;
-  align-self: center;
-}
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} 
 
 .headerMargin {
   padding-right: 13px !important;

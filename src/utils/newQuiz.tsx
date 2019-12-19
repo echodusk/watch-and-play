@@ -1,14 +1,15 @@
-import { IQuizzForm, Quizzes } from "../models/quiz/quizzes";
+import { IQuizForm, Quizzes } from "../models/quiz/quizzes";
 import { generateRandomId } from "./randomId";
 
-export function newQuizz(form: IQuizzForm): Quizzes {
+export function newQuiz(form: IQuizForm): Quizzes {
     const quizz =  {
         id: generateRandomId(),
         question: form.question,
         answerA: form.answerA,
         answerB: form.answerB,
         correctAnswer: form.correctAnswer!,
-        active: false
+        active: false,
+        editing: false,
     }
 
     return quizz;

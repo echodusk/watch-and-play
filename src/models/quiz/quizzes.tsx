@@ -5,9 +5,10 @@ export type Quizzes = {
   answerB: string;
   correctAnswer: CorrectAnswer;
   active: boolean;
+  editing: boolean;
 };
 
-export type IQuizzForm = {
+export type IQuizForm = {
   question: string;
   answerA: string;
   answerB: string;

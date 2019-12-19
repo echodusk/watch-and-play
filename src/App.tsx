@@ -4,10 +4,10 @@ import "semantic-ui-css/semantic.min.css";
 import { Header } from "semantic-ui-react";
 import { CardsContainer } from "./components/CardsContainer/CardsContainer";
 
-import { Quizzes, IQuizzForm } from "./models/quiz/quizzes";
+import { Quizzes, IQuizForm } from "./models/quiz/quizzes";
 import styles from "./App.module.css";
 import { generateRandomId } from "./utils/randomId";
-import { newQuizz } from "./utils/newQuizz";
+import { newQuiz } from "./utils/newQuiz";
 
 export type IAppState = {
   quizzes: Quizzes[];
@@ -22,7 +22,8 @@ class App extends React.Component<{}, IAppState> {
         answerA: "1990",
         answerB: "2019",
         correctAnswer: 2,
-        active: false
+        active: false,
+        editing: false
       },
       {
         id: generateRandomId(),
@@ -30,7 +31,8 @@ class App extends React.Component<{}, IAppState> {
         answerA: "Spring",
         answerB: "React",
         correctAnswer: 2,
-        active: false
+        active: false,
+        editing: false
       },
       {
         id: generateRandomId(),
@@ -38,33 +40,53 @@ class App extends React.Component<{}, IAppState> {
         answerA: "Smash",
         answerB: "Jump Force",
         correctAnswer: 1,
-        active: true
+        active: true,
+        editing: false
       }
     ]
   };
 
   public onActiveHandler = (id: string): void => {
     const { quizzes } = this.state;
-    const filteredQuizzes = quizzes.map(quizz => {
-      if (quizz.id === id) {
-        quizz.active = true;
-        return quizz;
+    const filteredQuizzes = quizzes.map(quiz => {
+      if (quiz.id === id) {
+        quiz.active = true;
+        return quiz;
       }
-      quizz.active = false;
-      return quizz;
+      quiz.active = false;
+      return quiz;
     });
 
     this.setState({ quizzes: filteredQuizzes });
   };
 
-  public onQuizzSubmit = (form: IQuizzForm): void => {
-    const quizz = newQuizz(form);
-    this.setState(prevState => ({ quizzes: [...prevState.quizzes, quizz] }))
-  }
+  public onQuizEdit = (form: IQuizForm, id: string) => {
+    this.setState(prevState => {
+      const updatedQuizzes = prevState.quizzes.map(q => {
+        if (q.id === id) {
+          q.question = form.question;
+          q.answerA = form.answerA;
+          q.answerB = form.answerB;
+          q.correctAnswer = form.correctAnswer!;
+        }
+        return q;
+      });
 
-  public onDeleteQuizz = (id: string): void => {
-    this.setState(prevState => ({ quizzes: [...prevState.quizzes.filter(quizz => quizz.id !== id)]}), () => console.log(this.state));
-  }
+      return { quizzes: updatedQuizzes };
+    });
+  };
+
+  public onQuizSubmit = (form: IQuizForm): void => {
+    const Quiz = newQuiz(form);
+    this.setState(prevState => ({ quizzes: [...prevState.quizzes, Quiz] }));
+  };
+
+  public onDeleteQuiz = (id: string): void => {
+    this.setState(
+      prevState => ({
+        quizzes: [...prevState.quizzes.filter(quiz => quiz.id !== id)]
+      }));
+  };
   public render() {
     return (
       <main className={styles.App}>
@@ -77,9 +99,10 @@ class App extends React.Component<{}, IAppState> {
               Trivia questions
             </Header>
             <CardsContainer
+              handleEdit={this.onQuizEdit}
               handleActive={this.onActiveHandler}
-              handleDelete={this.onDeleteQuizz}
-              handleSubmit={this.onQuizzSubmit}
+              handleDelete={this.onDeleteQuiz}
+              handleSubmit={this.onQuizSubmit}
               quizzes={this.state.quizzes}
             />
           </article>
