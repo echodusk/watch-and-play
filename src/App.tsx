@@ -14,7 +14,6 @@ export type IAppState = {
 };
 
 class App extends React.Component<IAppProps, IAppState> {
-
   state: IAppState = {
     quizzes: [
       {
@@ -43,20 +42,24 @@ class App extends React.Component<IAppProps, IAppState> {
         correctAnswer: 1,
         active: true,
         editing: false
-      },
+      }
     ]
   };
 
-  componentDidMount() {
-    if (localStorage.getItem('quiz')) {
-      const state = JSON.parse(localStorage.getItem('quiz')!);
-      this.state = state;
-    }
-  }
+  public onActiveHandler = (id: number): void => {
+    const { quizzes } = this.state;
+    const filteredQuizzes = quizzes.map(quizz => {
+      if (quizz.id === id) {
+        quizz.active = !quizz.active;
+        return quizz;
+      } else {
+        quizz.active = false;
+        return quizz;
+      }
+    });
 
-  componentWillUnmount() {
-    localStorage.setItem('quiz', JSON.stringify(this.state))
-  }
+    this.setState({ quizzes: filteredQuizzes });
+  };
 
   public render() {
     return (
@@ -72,7 +75,7 @@ class App extends React.Component<IAppProps, IAppState> {
             <Header textAlign="left" as="h4">
               Trivia questions
             </Header>
-            <CardsContainer quizzes={this.state.quizzes} />
+            <CardsContainer handleActive={this.onActiveHandler} quizzes={this.state.quizzes} />
           </article>
         </section>
       </main>

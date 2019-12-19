@@ -6,9 +6,10 @@ import styles from "./Card.module.css";
 import { Header, Button, Icon } from "semantic-ui-react";
 type ICardsContainerProps = {
   quiz: Quizzes;
+  handleActive: (id: number) => void;
 };
 
-export const Card: React.FC<ICardsContainerProps> = ({ quiz }) => {
+export const Card: React.FC<ICardsContainerProps> = ({ quiz, handleActive }) => {
   return (
     <div className={quiz.active ? styles.cardOpen : styles.card}>
       <Header textAlign="left" as="h5">
@@ -29,7 +30,7 @@ export const Card: React.FC<ICardsContainerProps> = ({ quiz }) => {
         </div>
       </div>
       <div className={styles.cardConfig}>
-        <Button basic>{quiz.active ? "Close" : "Open"}</Button>
+        <Button basic onClick={() => handleActive(quiz.id)}>{quiz.active ? "Close" : "Open"}</Button>
         <div>
           <Icon link name="trash alternate outline" size="large"></Icon>
           <Icon link name="pencil" size="large"></Icon>
