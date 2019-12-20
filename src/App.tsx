@@ -13,6 +13,7 @@ import VideoContainer from "./components/VideoContainer/VideoContainer";
 
 type IAppState = {
   quizzes: Quizzes[];
+  selectedQuiz?: Quizzes;
 };
 
 class App extends React.Component<{}, IAppState> {
@@ -42,24 +43,28 @@ class App extends React.Component<{}, IAppState> {
         answerA: "Smash",
         answerB: "Jump Force",
         correctAnswer: 1,
-        active: true,
+        active: false,
         editing: false
       }
     ]
   };
 
   public onActiveHandler = (id: string): void => {
-    const { quizzes } = this.state;
-    const filteredQuizzes = quizzes.map(quiz => {
-      if (quiz.id === id) {
-        quiz.active = true;
+    this.setState(prevState => {
+      const filteredQuizzes = prevState.quizzes.map(quiz => {
+        if (quiz.id === id) {
+          quiz.active = !quiz.active;
+          return quiz;
+        }
+        quiz.active = false;
         return quiz;
-      }
-      quiz.active = false;
-      return quiz;
-    });
+      });
 
-    this.setState({ quizzes: filteredQuizzes });
+      return {
+        quizzes: filteredQuizzes,
+        selectedQuiz: filteredQuizzes.find(q => q.active)
+      };
+    });
   };
 
   public onQuizEdit = (form: IQuizForm, id: string) => {
@@ -92,7 +97,7 @@ class App extends React.Component<{}, IAppState> {
   public render() {
     return (
       <main className={styles.App}>
-        <VideoContainer />
+        <VideoContainer question={this.state.selectedQuiz} />
         <QuizzesContainer
           handleEdit={this.onQuizEdit}
           handleActive={this.onActiveHandler}
