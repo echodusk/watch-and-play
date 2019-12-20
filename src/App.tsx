@@ -39,10 +39,10 @@ class App extends React.Component<{}, IAppState> {
       },
       {
         id: generateRandomId(),
-        question: "What's better?",
-        answerA: "Smash",
-        answerB: "Jump Force",
-        correctAnswer: 1,
+        question: "Which game is more popular?",
+        answerA: "Apex Legends",
+        answerB: "Fortnite",
+        correctAnswer: 2,
         active: false,
         editing: false
       }
