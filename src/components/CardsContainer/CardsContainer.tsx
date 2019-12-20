@@ -82,7 +82,7 @@ export const CardsContainer: React.FC<ICardsContainerProps> = ({
               />
             ))}
       </section>
-      <section>
+      <section className={styles.buttonContainer}>
         {!isOpen ? (
           <Button onClick={() => { setEditingId(""); setOpen(true); }} basic floated="left">
             Add Question

@@ -5,4 +5,6 @@
 
 .quizContainer {
   padding: 20px;
+  overflow-y: auto;
+  height: 100vh;
 }
