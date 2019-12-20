@@ -89,9 +89,15 @@ class App extends React.Component<{}, IAppState> {
   };
 
   public onDeleteQuiz = (id: string): void => {
-    this.setState(prevState => ({
-      quizzes: [...prevState.quizzes.filter(quiz => quiz.id !== id)]
-    }));
+    this.setState(prevState => {
+      const filteredQuizzes = prevState.quizzes.filter(q => q.id !== id);
+      return {
+        quizzes: filteredQuizzes,
+        selectedQuiz: prevState.quizzes.find(q => q.id === id)
+          ? undefined
+          : prevState.selectedQuiz
+      };
+    });
   };
 
   public render() {
